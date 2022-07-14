@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package a;
+
+option go_package = "go_Grpc/a/proto";
+
+message aRequest{
+    uint32 num1 = 3;
+    uint32 num2 = 10; 
+}
+
+message aResponse{
+    uint32 result = 1;
+}
+
+service aService{
+    rpc a (aRequest) returns (aResponse);
+}
+
+message primeRequest{
+    uint32 num = 1;
+}
+
+message primeResponse{
+    uint32 result = 1;
+}
+
+service primeService{
+    rpc primedivions (primeRequest) returns (stream primeResponse);
+}
+
+message avgRequest{
+    int32 num = 1;
+}
+
+message avgResponse{
+    float avg = 1;
+}
+service avgService{
+    rpc findAvg (stream avgRequest) returns (avgResponse);
+}
+
+message maxRequest{
+    int32 num = 1;
+}
+message maxResponse{
+    int32 result = 1;
+}
+service maxService{
+    rpc findMax(stream maxRequest) returns (stream maxResponse);
+}
+
+message sqrtRequest{
+    int32 num = 1;
+}
+message sqrtResponse{
+    float result = 1;
+}
+service sqrtService{
+    rpc findSqrt(sqrtRequest) returns (sqrtResponse);
+    rpc findabs(sqrtRequest) returns (sqrtResponse);
+ }
